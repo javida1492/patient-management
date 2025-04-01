@@ -34,15 +34,12 @@ function App() {
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null)
   const [selectedAppointment, setSelectedAppointment] = useState<any>(null)
 
-  // Form state hooks for dialog forms
   const [newPatient, setNewPatient] = useState(initialPatientState)
   const [newAppointment, setNewAppointment] = useState(initialAppointmentState)
   const [newNote, setNewNote] = useState(initialNoteState)
 
-  // State for clinical notes fetched from the API.
   const [clinicalNotes, setClinicalNotes] = useState<Note[]>([])
 
-  // Fetch clinical notes once when App mounts.
   useEffect(() => {
     const getNotes = async () => {
       try {
@@ -55,7 +52,6 @@ function App() {
     getNotes()
   }, [])
 
-  // Custom hooks for business logic
   const { patients, addNewPatient } = usePatients()
   const { appointments, addAppointment } = useAppointments(patients)
   const { addOrUpdateNote, getAppointmentNote } = useClinicalNotes()
@@ -109,11 +105,8 @@ function App() {
     addOrUpdateNote(newNote)
     setNewNote(initialNoteState)
     handleCloseNoteDialog()
-    // Optionally, refresh clinical notes after adding/updating a note.
-    // You could re-fetch here if desired.
   }
 
-  // --- Patient selection and note dialog handling ---
   const handleSelectPatient = (patient: Patient) => {
     setSelectedPatient(patient)
     setTabValue(1)

@@ -18,7 +18,6 @@ const PatientList: React.FC<PatientListProps> = ({
   onAddPatient,
   onSelectPatient,
 }) => {
-  // Custom filter function to filter patients based on a search string.
   const customFilter = (patient: Patient, filterVal: string): boolean => {
     const lowerFilter = filterVal.toLowerCase()
     return (
@@ -38,7 +37,6 @@ const PatientList: React.FC<PatientListProps> = ({
     setFilterValue,
   } = useSortAndFilter(patients, customFilter)
 
-  // Toggle sort order if the same field is clicked again, otherwise set ascending.
   const handleSort = (field: string) => {
     if (sortBy === field) {
       setSortOrder(sortOrder === "asc" ? "desc" : "asc")

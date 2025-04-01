@@ -12,24 +12,22 @@ import {
 } from "@mui/material"
 import { formatDate } from "../utils"
 import { AddEditNoteDialogProps, Patient } from "../interfaces"
-import { addNote } from "../services/api" // Ensure this API function is defined
+import { addNote } from "../services/api"
 
 const AddEditNoteDialog: React.FC<AddEditNoteDialogProps> = ({
   open,
   onClose,
-  onAddNote, // Parent callback (e.g., refresh notes list)
-  newNote, // New note data of type NewNote (without an id)
+  onAddNote,
+  newNote,
   onNoteInputChange,
   selectedAppointment,
   getAppointmentNote,
   patients,
 }) => {
-  // Determine if we are editing an existing note by checking if one exists for the selected appointment.
   const isEditing = !!(
     selectedAppointment && getAppointmentNote(selectedAppointment.id)
   )
 
-  // Lookup the patient by the appointment's patientId.
   const patient = patients.find(
     (p: Patient) => p.id === selectedAppointment?.patientId
   )
@@ -39,10 +37,7 @@ const AddEditNoteDialog: React.FC<AddEditNoteDialogProps> = ({
 
   const handleSubmit = async () => {
     try {
-      // For new notes, call the API to add the note.
-      // (If editing, you'd call an update API function instead.)
       await addNote(newNote)
-      // After a successful API call, invoke the parent's callback.
       onAddNote()
     } catch (error) {
       console.error("Error adding note:", error)

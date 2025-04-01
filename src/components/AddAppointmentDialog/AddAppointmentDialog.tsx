@@ -53,7 +53,6 @@ const AddAppointmentDialog: React.FC<AddAppointmentDialogProps> = ({
   const handleSubmit = async () => {
     if (validate()) {
       try {
-        // Destructure only the fields from NewAppointment
         const {
           patientId,
           date,

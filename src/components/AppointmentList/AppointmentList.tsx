@@ -27,7 +27,6 @@ const AppointmentList: React.FC<Props> = ({
   onAddNote,
   patients,
 }) => {
-  // Local state to hold appointments fetched from the API.
   const [appointments, setAppointments] = useState<Appointment[]>([])
 
   useEffect(() => {
@@ -42,7 +41,6 @@ const AppointmentList: React.FC<Props> = ({
     fetchData()
   }, [])
 
-  // Determine which appointments to display:
   const displayedAppointments = useMemo(() => {
     if (selectedPatient) {
       return appointments.filter(
@@ -52,7 +50,6 @@ const AppointmentList: React.FC<Props> = ({
     return appointments
   }, [appointments, selectedPatient])
 
-  // Precompute a mapping from patient ID to full name.
   const patientMap = useMemo<Record<string, string>>(() => {
     return patients.reduce((acc, patient: Patient) => {
       acc[patient.id] = `${patient.firstName} ${patient.lastName}`

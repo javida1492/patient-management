@@ -17,7 +17,6 @@ const AddPatientDialog: React.FC<AddPatientDialogProps> = ({
   newPatient,
   onPatientInputChange,
 }) => {
-  // Define error state for each field.
   const [errors, setErrors] = useState<{
     firstName: string
     lastName: string
@@ -30,7 +29,6 @@ const AddPatientDialog: React.FC<AddPatientDialogProps> = ({
     phoneNumber: "",
   })
 
-  // Clear errors when the dialog closes.
   useEffect(() => {
     if (!open) {
       setErrors({
@@ -42,7 +40,6 @@ const AddPatientDialog: React.FC<AddPatientDialogProps> = ({
     }
   }, [open])
 
-  // Validate a single field.
   const validateField = (fieldName: string, value: string): string => {
     switch (fieldName) {
       case "firstName":
@@ -75,7 +72,6 @@ const AddPatientDialog: React.FC<AddPatientDialogProps> = ({
     }
   }
 
-  // Validate all fields before submission.
   const validateAll = (): boolean => {
     const newErrors = {
       firstName: validateField("firstName", newPatient.firstName),
@@ -87,7 +83,6 @@ const AddPatientDialog: React.FC<AddPatientDialogProps> = ({
     return Object.values(newErrors).every((error) => error === "")
   }
 
-  // Handle change: update parent's state and validate the field.
   const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (
     event: ChangeEvent<HTMLInputElement>
   ) => {

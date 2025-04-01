@@ -1,4 +1,3 @@
-// src/components/PatientList/Columns.jsx
 import React from "react"
 import { TableCell, TableHead, TableRow, TableSortLabel } from "@mui/material"
 

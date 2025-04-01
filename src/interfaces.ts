@@ -34,8 +34,8 @@ export interface PatientRowProps {
 
 export interface Appointment extends NewAppointment {
   id: string
-  dateTime: string // computed, e.g., "2023-10-15T09:00"
-  patientName: string // looked up from patients list
+  dateTime: string
+  patientName: string
 }
 
 export interface NewAppointment {

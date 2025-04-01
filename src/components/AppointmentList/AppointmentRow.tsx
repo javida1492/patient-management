@@ -11,14 +11,11 @@ const getColor = (status: string): "error" | "success" | "primary" => {
   return "primary"
 }
 
-// We use Omit<AppointmentRowProps, "providerMap"> to remove providerMap from props.
 export const AppointmentRow: React.FC<
   Omit<AppointmentRowProps, "providerMap">
 > = ({ displayedAppointments, patientMap, onAddNote }) => {
-  // State to hold providers fetched from the API.
   const [providers, setProviders] = useState<Provider[]>([])
 
-  // Fetch providers on mount.
   useEffect(() => {
     const loadProviders = async () => {
       try {
@@ -31,7 +28,6 @@ export const AppointmentRow: React.FC<
     loadProviders()
   }, [])
 
-  // Compute a mapping from provider ID to full name from the fetched providers.
   const providerMap = useMemo<Record<string, string>>(() => {
     return providers.reduce((acc, provider) => {
       acc[provider.id.toString()] = `${provider.firstName} ${provider.lastName}`
